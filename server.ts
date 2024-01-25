@@ -30,7 +30,7 @@ const users: User[] = [
 		id: 1,
 		name: 'holafly',
 		email: 'holafly@gmail.com',
-		password: 'holadly123',
+		password: 'holafly123',
 	},
 ];
 

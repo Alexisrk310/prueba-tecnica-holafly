@@ -1,6 +1,6 @@
 import { userAuth } from '@/interfaces/userInterface';
 
-export const login = async (credentials: userAuth) => {
+export const loginAuth = async (credentials: userAuth) => {
 	const loginEndpoint = 'http://localhost:3001/api/login';
 	try {
 		const response = await fetch(loginEndpoint, {
@@ -20,4 +20,5 @@ export const login = async (credentials: userAuth) => {
 	} catch (error: any) {
 		console.error('Error during login:', error.message);
 	}
+	console.log(credentials);
 };
