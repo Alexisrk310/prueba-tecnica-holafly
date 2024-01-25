@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import './Card.css';
-import { CircularProgress } from '../CircularProgress';
+// import { CircularProgress } from '../CircularProgress';
 import Image from 'next/image';
 
 export type CardProps = {
@@ -9,8 +9,8 @@ export type CardProps = {
 	city: string;
 	date?: string;
 	plan: string;
-	storage: string;
-	comsuption: string;
+	storage: any;
+	consumption: string;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -19,13 +19,11 @@ const Card: React.FC<CardProps> = ({
 	date,
 	plan,
 	storage,
-	comsuption,
+	consumption,
 }: CardProps) => {
-	const [progress, setProgress] = useState<number>(0);
-
 	const circumference = 251.2;
 	const radius = 40;
-	const offset = circumference - (progress / 100) * circumference;
+	const offset = circumference - (storage / 100) * circumference;
 
 	const getBackgroundColor = () =>
 		typeCard === 'ACTIVE'
@@ -66,7 +64,7 @@ const Card: React.FC<CardProps> = ({
 				</div>
 				<div className="type">
 					{typeCard === 'PENDING' ? (
-						// GB BAR
+						// DAYS
 						<svg width="100" height="150" xmlns="http://www.w3.org/2000/svg">
 							<rect
 								x="5"
@@ -108,9 +106,9 @@ const Card: React.FC<CardProps> = ({
 								dominant-baseline="middle"
 								fill="#333">
 								{typeCard == 'PENDING'
-									? `/${comsuption}GB`
+									? `/${consumption}GB`
 									: typeCard === 'PENDING'
-									? `/${comsuption}Days`
+									? `/${consumption}Days`
 									: undefined}
 							</text>
 						</svg>
@@ -142,7 +140,7 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{`${progress}%`}
+									{`${storage}`}
 								</text>
 							</svg>
 						</div>

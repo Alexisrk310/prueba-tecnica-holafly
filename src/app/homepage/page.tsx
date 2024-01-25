@@ -17,15 +17,15 @@ const page = () => {
 				<h1 className="font-bold m-10">TARJETAS</h1>
 			</div>
 			<div className="flex gap-10 justify-center items-center flex-wrap ">
-				<Card
+				{/* <Card
 					typeCard="ACTIVE"
-					// city="Democratic Republic of Congo"
-					// plan="10 days plan, 5GB"
-					// storage="0"
-					// comsuption="0"
+					city="Democratic Republic of Congo"
+					plan="10 days plan, 5GB"
+					storage="0"
+					comsuption="0"
 				/>
 				<Card typeCard="PENDING" />
-				<Card typeCard="EXPIRED" />
+				<Card typeCard="EXPIRED" /> */}
 			</div>
 		</>
 	);
