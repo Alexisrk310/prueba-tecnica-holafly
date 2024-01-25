@@ -16,8 +16,10 @@ export const loginAuth = async (credentials: userAuth) => {
 		}
 
 		const data = await response.json();
-		return await data;
+		return data;
 	} catch (error: any) {
+		console.log(error);
+
 		console.error('Error during login:', error.message);
 	}
 	console.log(credentials);

@@ -1,7 +1,10 @@
+'use client';
 import { Card } from '@/components';
 import React from 'react';
+import { useRouter } from 'next/router';
 
-const page = () => {
+export default function page() {
+	const router = useRouter();
 	fetch('https://jsonplaceholder.typicode.com/todos/1')
 		.then((response) => response.json())
 		.then((data) => {
@@ -16,6 +19,7 @@ const page = () => {
 			<div className="flex justify-center">
 				<h1 className="font-bold m-10">TARJETAS</h1>
 			</div>
+			<button onClick={() => router.push('/')}>CLICK</button>
 			<div className="flex gap-10 justify-center items-center flex-wrap ">
 				{/* <Card
 					typeCard="ACTIVE"
@@ -29,5 +33,4 @@ const page = () => {
 			</div>
 		</>
 	);
-};
-export default page;
+}

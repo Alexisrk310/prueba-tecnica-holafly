@@ -1,7 +1,7 @@
 export const userData = async (id: string) => {
-	const loginEndpoint = `http://localhost:3001/api/users/${id}/data`;
+	const userDataEndpoint = `http://localhost:3001/api/users/${id}/data`;
 	try {
-		const response = await fetch(loginEndpoint, {
+		const response = await fetch(userDataEndpoint, {
 			headers: {
 				'Content-Type': 'application/json',
 			},

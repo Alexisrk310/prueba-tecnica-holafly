@@ -1,22 +1,27 @@
 'use client';
+import { useRouter ,NextRouter } from 'next/router';
 import { Card } from '@/components/Card';
 import Image from 'next/image';
 import { useAuthForm } from '@/hooks/useAuthForm';
 import { FormEvent } from 'react';
 import { loginAuth } from '@/services/post/loginAuth';
-
 export default function Home() {
+	const router = useRouter();
 	const { formAuth, setFormAuth, handleChange } = useAuthForm({
-		email: '',
-		password: '',
+		email: 'holafly@gmail.com',
+		password: 'holafly123',
 	});
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-
+		setFormAuth({
+			email: formAuth.email,
+			password: formAuth.password,
+		});
 		try {
 			const userData = await loginAuth(formAuth);
-			console.log(formAuth);
-			console.log(userData);
+			if (userData.message == 'Login successful') {
+				router.push('/');
+			}
 			// Aquí puedes realizar acciones adicionales después de un inicio de sesión exitoso, si es necesario
 		} catch (error: any) {
 			// Manejar el error
