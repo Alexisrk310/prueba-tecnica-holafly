@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 type CircularProgressProps = {};
 
 const CircularProgress: React.FC<CircularProgressProps> = () => {
-	const [progress, setProgress] = useState<number>(80);
+	const [progress, setProgress] = useState<number>(0);
 
 	const circumference = 251.2;
 	const radius = 40;
