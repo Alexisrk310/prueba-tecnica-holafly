@@ -41,13 +41,13 @@ const Card: React.FC<CardProps> = ({
 		<div className="w-80 h-80  rounded overflow-hidden shadow-lg bg-white p-4 ">
 			<div className="flex justify-around items-center">
 				<div className="flex">
-					<div className="mr-4">
+					<div className="">
 						<img
 							className="rounded-full w-20"
 							src={flag}
 							alt="Producto"
-							width={100}
-							height={100}
+							// width={100}
+							// height={100}
 						/>
 						<p className="mt-2 text-sm font-medium text-gray-600">{country}</p>
 					</div>
@@ -134,7 +134,7 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{`${plan}`}
+									{offset == undefined ? 0 : offset}
 								</text>
 							</svg>
 						</div>
@@ -146,7 +146,7 @@ const Card: React.FC<CardProps> = ({
 			</div>
 			{/* <p className="text-gray-700 text-base mt-4">5 days plan, 5GB</p> */}
 			{/* <p className="text-gray-700 text-base mt-4">{date}</p> */}
-			<p>{`${dateStart}-${dateEnd}`}</p>
+			<p>{`${dateStart}${dateEnd ? ` - ${dateEnd}` : ''}`}</p>
 			<p className="text-gray-700 text-base mt-4">{plan}</p>
 			<div className="px-6 py-4"></div>
 			<div className="flex justify-center flex-col gap-1">
