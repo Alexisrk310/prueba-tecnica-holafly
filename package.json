@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "type": "commonjs",
+  "type": "commonjs"  ,
   "dependencies": {
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",

@@ -140,12 +140,13 @@ const Card: React.FC<CardProps> = ({
 						</div>
 					) : // <CircularProgress />
 					status === 'Expired' ? (
-						<p>{`${dateStart}-${dateEnd}`}</p>
+						<></>
 					) : undefined}
 				</div>
 			</div>
 			{/* <p className="text-gray-700 text-base mt-4">5 days plan, 5GB</p> */}
 			{/* <p className="text-gray-700 text-base mt-4">{date}</p> */}
+			<p>{`${dateStart}-${dateEnd}`}</p>
 			<p className="text-gray-700 text-base mt-4">{plan}</p>
 			<div className="px-6 py-4"></div>
 			<div className="flex justify-center flex-col gap-1">

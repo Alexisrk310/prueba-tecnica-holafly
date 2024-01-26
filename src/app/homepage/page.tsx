@@ -26,10 +26,11 @@ export default function HomePage() {
 		};
 
 		fetchData();
-	}, [addDataToStore]); // Asegúrate de incluir 'addDataToStore' como dependencia
+	}, []); // Asegúrate de incluir 'addDataToStore' como dependencia
 
 	// Puedes acceder a 'stateData' fuera de useEffect
 	// console.log(stateData[0].country);
+	console.log(stateData);
 
 	return (
 		<>
@@ -38,20 +39,21 @@ export default function HomePage() {
 			</div>
 
 			<div className="flex gap-10 justify-center items-center flex-wrap ">
-				{stateData.map((dataUser: any, index) => (
-					<Card
-						key={index}
-						// typeCard={dataUser.typeCa	rd}
-						status={dataUser.status}
-						dateStart={dataUser.dateStart}
-						dateEnd={dataUser.dateEnd}
-						flag={dataUser.flag}
-						country={dataUser.country}
-						plan={dataUser.plan}
-						consumption={dataUser.consumption}
-						// totalConsumption={dataUser.totalConsumption}
-					/>
-				))}
+				{/* {stateData.map((dataUser: any, index) => {
+					return (
+						<Card
+							key={index}
+							status={dataUser[0].status}
+							dateStart={dataUser[0].dateStart}
+							dateEnd={dataUser[0].dateEnd}
+							flag={dataUser[0].flag}
+							country={dataUser[0].country}
+							plan={dataUser[0].plan}
+							consumption={dataUser[0].consumption}
+							// totalConsumption={dataUser.totalConsumption}
+						/>
+					);
+				})} */}
 				{/* <Card
 					typeCard="ACTIVE"
 					city="Democratic Republic of Congo"

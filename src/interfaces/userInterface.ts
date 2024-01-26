@@ -8,7 +8,7 @@ export interface UserDataStore {
 	addData: (value: UserData) => void;
 }
 export interface UserData {
-	status: string;
+	status: 'Expired' | 'Pending' | 'Active';
 	dateStart: string;
 	dateEnd: string;
 	consumption: null | any;
