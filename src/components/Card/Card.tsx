@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({
 		status === 'Active'
 			? 'bg-blue-100'
 			: status === 'Pending'
-			? 'bg-warning'
+			? 'bg-yellow-200'
 			: status === 'Expired'
 			? 'bg-gray-200'
 			: '';
@@ -32,22 +32,22 @@ const Card: React.FC<CardProps> = ({
 		status === 'Active'
 			? 'text-blue-800'
 			: status === 'Pending'
-			? 'text-warning'
+			? 'text-yellow-800'
 			: status === 'Expired'
 			? 'text-gray-500'
 			: '';
 
 	return (
-		<div className="max-w-80  rounded overflow-hidden shadow-lg bg-white p-4 ">
+		<div className="w-80 h-80  rounded overflow-hidden shadow-lg bg-white p-4 ">
 			<div className="flex justify-around items-center">
 				<div className="flex">
 					<div className="mr-4">
 						<img
-							className="rounded-full w-14"
+							className="rounded-full w-20"
 							src={flag}
 							alt="Producto"
-							width={56}
-							height={56}
+							width={100}
+							height={100}
 						/>
 						<p className="mt-2 text-sm font-medium text-gray-600">{country}</p>
 					</div>

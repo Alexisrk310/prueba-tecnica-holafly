@@ -32,7 +32,7 @@ body {
 		text-wrap: balance;
 	}
 } */
-
+/* LOADER */
 .loader {
 	width: 100px;
 	height: 100 px;
@@ -71,4 +71,8 @@ body {
 	100% {
 		transform: translate(-50%, -50%) scale(0);
 	}
+}
+/* CLASS TABS */
+.indicator {
+	transition: left 0.4s;
 }
