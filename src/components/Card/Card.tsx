@@ -42,6 +42,7 @@ const Card: React.FC<CardProps> = ({
 			: status === 'Expired'
 			? 'text-gray-500'
 			: '';
+	console.log(planGB);
 
 	return (
 		<div className="container w-80 h-75  rounded overflow-hidden shadow-lg bg-slate-50 p-4 ">
@@ -166,12 +167,12 @@ const Card: React.FC<CardProps> = ({
 						<button className="bg-slate-100 hover:bg-slate-200 active:bg-slate-400 text-black font-bold py-2 px-4 rounded-md">
 							View Details
 						</button>
-						<button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md">
+						<button className="bg-green-500 hover:bg-green-600 active:bg-green-400 text-white font-bold py-2 px-4 rounded-md">
 							Add more data
 						</button>
 					</>
 				) : status === 'Pending' ? (
-					<button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md">
+					<button className="bg-red-500 hover:bg-red-600 active:bg-red-400 text-white font-bold py-2 px-4 rounded-md">
 						View Details and Install
 					</button>
 				) : status === 'Expired' ? (

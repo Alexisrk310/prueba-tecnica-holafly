@@ -75,7 +75,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 
 	return (
 		<div className="flex justify-center items-center">
-			<div className="max-w-3xl  sm:px-0">
+			<div className="max-w-full  sm:px-0">
 				<div className="sm:w-7/12">
 					<div
 						role="tablist"
@@ -89,7 +89,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 					<div className="mt-6 relative rounded-3xl bg-purple-50">
 						{React.Children.map(children, (child, index) => (
 							<TabPanel key={index} id={tabs[index].panelId}>
-								{child}	
+								{child}
 							</TabPanel>
 						))}
 					</div>
