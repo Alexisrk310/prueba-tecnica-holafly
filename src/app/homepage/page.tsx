@@ -1,26 +1,57 @@
 'use client';
 import { Card } from '@/components';
-import React from 'react';
-import { useRouter } from 'next/router';
+import { CardProps } from '@/interfaces/cardProps';
+import { UserData } from '@/interfaces/userInterface';
 
-export default function page() {
-	const router = useRouter();
-	fetch('https://jsonplaceholder.typicode.com/todos/1')
-		.then((response) => response.json())
-		.then((data) => {
-			console.log('Datos obtenidos:', data);
-			// Aquí puedes manejar los datos como desees
-		})
-		.catch((error) => {
-			console.error('Error al obtener datos:', error);
-		});
+import { getUserData } from '@/services/get/getUserData';
+import { useUserDataStore } from '@/store/userDataStore';
+import React, { useEffect } from 'react';
+
+export default function HomePage() {
+	// Obtén la función 'addData' y 'stateData' del store
+
+	const stateData = useUserDataStore((state) => state.stateData);
+	const addDataToStore = useUserDataStore((state) => state.addData);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await getUserData('1');
+				console.log(data);
+				// Utiliza 'addData' fuera del contexto async
+
+				addDataToStore(data);
+			} catch (error) {
+				console.error('Error al obtener datos:', error);
+			}
+		};
+
+		fetchData();
+	}, [addDataToStore]); // Asegúrate de incluir 'addDataToStore' como dependencia
+
+	// Puedes acceder a 'stateData' fuera de useEffect
+	// console.log(stateData[0].country);
+
 	return (
 		<>
 			<div className="flex justify-center">
 				<h1 className="font-bold m-10">TARJETAS</h1>
 			</div>
-			<button onClick={() => router.push('/')}>CLICK</button>
+
 			<div className="flex gap-10 justify-center items-center flex-wrap ">
+				{stateData.map((dataUser: any, index) => (
+					<Card
+						key={index}
+						// typeCard={dataUser.typeCa	rd}
+						status={dataUser.status}
+						dateStart={dataUser.dateStart}
+						dateEnd={dataUser.dateEnd}
+						flag={dataUser.flag}
+						country={dataUser.country}
+						plan={dataUser.plan}
+						consumption={dataUser.consumption}
+						// totalConsumption={dataUser.totalConsumption}
+					/>
+				))}
 				{/* <Card
 					typeCard="ACTIVE"
 					city="Democratic Republic of Congo"

@@ -3,43 +3,37 @@ import React, { useState } from 'react';
 import './Card.css';
 // import { CircularProgress } from '../CircularProgress';
 import Image from 'next/image';
-
-export type CardProps = {
-	typeCard?: 'PENDING' | 'ACTIVE' | 'EXPIRED';
-	city: string;
-	date?: string;
-	plan: string;
-	storage: any;
-	consumption: string;
-};
+import { CardProps } from '../../interfaces/cardProps';
 
 const Card: React.FC<CardProps> = ({
-	typeCard,
-	city,
-	date,
-	plan,
-	storage,
+	status,
+	dateStart,
+	dateEnd,
+	flag,
+	country,
 	consumption,
-}: CardProps) => {
+	plan,
+}) => {
 	const circumference = 251.2;
 	const radius = 40;
-	const offset = circumference - (storage / 100) * circumference;
+	const offset =
+		circumference - (consumption?.totalComsumption / 100) * circumference;
 
 	const getBackgroundColor = () =>
-		typeCard === 'ACTIVE'
+		status === 'Active'
 			? 'bg-blue-100'
-			: typeCard === 'PENDING'
+			: status === 'Pending'
 			? 'bg-warning'
-			: typeCard === 'EXPIRED'
+			: status === 'Expired'
 			? 'bg-gray-200'
 			: '';
 
 	const getTextColor = () =>
-		typeCard === 'ACTIVE'
+		status === 'Active'
 			? 'text-blue-800'
-			: typeCard === 'PENDING'
+			: status === 'Pending'
 			? 'text-warning'
-			: typeCard === 'EXPIRED'
+			: status === 'Expired'
 			? 'text-gray-500'
 			: '';
 
@@ -48,22 +42,22 @@ const Card: React.FC<CardProps> = ({
 			<div className="flex justify-around items-center">
 				<div className="flex">
 					<div className="mr-4">
-						<Image
+						<img
 							className="rounded-full w-14"
-							src="https://via.placeholder.com/300"
+							src={flag}
 							alt="Producto"
 							width={56}
 							height={56}
 						/>
-						<p className="mt-2 text-sm font-medium text-gray-600">{city}</p>
+						<p className="mt-2 text-sm font-medium text-gray-600">{country}</p>
 					</div>
 					<p
 						className={`mt-5 h-5 text-xs font-medium px-2.5 py-0.5 rounded ${getBackgroundColor()} ${getTextColor()}`}>
-						{typeCard}
+						{status}
 					</p>
 				</div>
 				<div className="type">
-					{typeCard === 'PENDING' ? (
+					{status === 'Pending' ? (
 						// DAYS
 						<svg width="100" height="150" xmlns="http://www.w3.org/2000/svg">
 							<rect
@@ -95,7 +89,7 @@ const Card: React.FC<CardProps> = ({
 								text-anchor="middle"
 								dominant-baseline="middle"
 								fill="#333">
-								{storage}
+								{consumption}
 							</text>
 
 							<text
@@ -105,14 +99,14 @@ const Card: React.FC<CardProps> = ({
 								text-anchor="middle"
 								dominant-baseline="middle"
 								fill="#333">
-								{typeCard == 'PENDING'
+								{status == 'Pending'
 									? `/${consumption}GB`
-									: typeCard === 'PENDING'
+									: status === 'Pending'
 									? `/${consumption}Days`
 									: undefined}
 							</text>
 						</svg>
-					) : typeCard === 'ACTIVE' ? (
+					) : status === 'Active' ? (
 						<div>
 							<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
 								<circle
@@ -140,22 +134,22 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{`${storage}`}
+									{`${plan}`}
 								</text>
 							</svg>
 						</div>
 					) : // <CircularProgress />
-					typeCard === 'EXPIRED' ? (
-						<></>
+					status === 'Expired' ? (
+						<p>{`${dateStart}-${dateEnd}`}</p>
 					) : undefined}
 				</div>
 			</div>
 			{/* <p className="text-gray-700 text-base mt-4">5 days plan, 5GB</p> */}
-			<p className="text-gray-700 text-base mt-4">{date}</p>
+			{/* <p className="text-gray-700 text-base mt-4">{date}</p> */}
 			<p className="text-gray-700 text-base mt-4">{plan}</p>
 			<div className="px-6 py-4"></div>
 			<div className="flex justify-center flex-col gap-1">
-				{typeCard === 'ACTIVE' ? (
+				{status === 'Active' ? (
 					<>
 						<button className="bg-white hover:bg-slate-400 text-black font-bold py-2 px-4 rounded-md">
 							View Details
@@ -164,11 +158,11 @@ const Card: React.FC<CardProps> = ({
 							Add more data
 						</button>
 					</>
-				) : typeCard === 'PENDING' ? (
+				) : status === 'Pending' ? (
 					<button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md">
 						View Details and Install
 					</button>
-				) : typeCard === 'EXPIRED' ? (
+				) : status === 'Expired' ? (
 					<></>
 				) : undefined}
 			</div>

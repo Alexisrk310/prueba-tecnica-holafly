@@ -1,7 +1,7 @@
 'use client';
-import { useRouter ,NextRouter } from 'next/router';
-import { Card } from '@/components/Card';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+// import { Card } from '@/components/Card';
+// import Image from 'next/image';
 import { useAuthForm } from '@/hooks/useAuthForm';
 import { FormEvent } from 'react';
 import { loginAuth } from '@/services/post/loginAuth';
@@ -19,8 +19,10 @@ export default function Home() {
 		});
 		try {
 			const userData = await loginAuth(formAuth);
+			console.log(userData);
+
 			if (userData.message == 'Login successful') {
-				router.push('/');
+				router.push('/homepage');
 			}
 			// Aquí puedes realizar acciones adicionales después de un inicio de sesión exitoso, si es necesario
 		} catch (error: any) {

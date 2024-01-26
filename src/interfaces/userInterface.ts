@@ -3,13 +3,18 @@ export interface userAuth {
 	email: string | undefined;
 	password: string | undefined;
 }
-
-export interface userData {
+export interface UserDataStore {
+	stateData: UserData[];
+	addData: (value: UserData) => void;
+}
+export interface UserData {
 	status: string;
 	dateStart: string;
 	dateEnd: string;
-	consumption: null | any; // Puedes ajustar el tipo según lo que esperes para consumption
+	consumption: null | any;
 	flag: string;
 	country: string;
 	plan: string;
+	city: string;
+	storage: string;
 }

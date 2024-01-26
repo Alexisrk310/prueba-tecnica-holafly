@@ -1,4 +1,5 @@
-export const userData = async (id: string) => {
+'use client';
+export const getUserData = async (id: string) => {
 	const userDataEndpoint = `http://localhost:3001/api/users/${id}/data`;
 	try {
 		const response = await fetch(userDataEndpoint, {
