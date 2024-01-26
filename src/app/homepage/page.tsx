@@ -1,7 +1,7 @@
 'use client';
 import { Card } from '@/components';
 import { CardProps } from '@/interfaces/cardProps';
-import { UserData } from '@/interfaces/userInterface';
+import { CardConsumed } from '@/interfaces/userInterface';
 
 import { getUserData } from '@/services/get/getUserData';
 import { useUserDataStore } from '@/store/userDataStore';
@@ -10,27 +10,16 @@ import React, { useEffect } from 'react';
 export default function HomePage() {
 	// Obtén la función 'addData' y 'stateData' del store
 
-	const stateData = useUserDataStore((state) => state.stateData);
-	const addDataToStore = useUserDataStore((state) => state.addData);
+	const { fetchData, cardConsumed } = useUserDataStore((state) => state);
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const data = await getUserData('1');
-				console.log(data);
-				// Utiliza 'addData' fuera del contexto async
-
-				addDataToStore(data);
-			} catch (error) {
-				console.error('Error al obtener datos:', error);
-			}
-		};
-
-		fetchData();
+		fetchData('1');
 	}, []); // Asegúrate de incluir 'addDataToStore' como dependencia
 
 	// Puedes acceder a 'stateData' fuera de useEffect
 	// console.log(stateData[0].country);
-	console.log(stateData);
+	// console.log(stateData);
+	// console.log(stateData.pop());
+	console.log(cardConsumed);
 
 	return (
 		<>
@@ -39,21 +28,21 @@ export default function HomePage() {
 			</div>
 
 			<div className="flex gap-10 justify-center items-center flex-wrap ">
-				{/* {stateData.map((dataUser: any, index) => {
+				{cardConsumed.map((dataUser: any, index) => {
 					return (
 						<Card
 							key={index}
-							status={dataUser[0].status}
-							dateStart={dataUser[0].dateStart}
-							dateEnd={dataUser[0].dateEnd}
-							flag={dataUser[0].flag}
-							country={dataUser[0].country}
-							plan={dataUser[0].plan}
-							consumption={dataUser[0].consumption}
+							status={dataUser.status}
+							dateStart={dataUser.dateStart}
+							dateEnd={dataUser.dateEnd}
+							flag={dataUser.flag}
+							country={dataUser.country}
+							plan={dataUser.plan}
+							consumption={dataUser.consumption}
 							// totalConsumption={dataUser.totalConsumption}
 						/>
 					);
-				})} */}
+				})}
 				{/* <Card
 					typeCard="ACTIVE"
 					city="Democratic Republic of Congo"

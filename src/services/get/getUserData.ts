@@ -1,5 +1,16 @@
 'use client';
-export const getUserData = async (id: string) => {
+import { UserDataStore } from '@/interfaces/userInterface';
+
+interface Iset {
+	set: (
+		partial:
+			| UserDataStore
+			| Partial<UserDataStore>
+			| ((state: UserDataStore) => UserDataStore | Partial<UserDataStore>),
+		replace?: boolean | undefined
+	) => void;
+}
+export const getUserData = async (id: string, set: Iset['set']) => {
 	const userDataEndpoint = `http://localhost:3001/api/users/${id}/data`;
 	try {
 		const response = await fetch(userDataEndpoint, {
@@ -13,7 +24,7 @@ export const getUserData = async (id: string) => {
 		}
 
 		const data = await response.json();
-		return await data;
+		set({ cardConsumed: data });
 	} catch (error: any) {
 		console.error('Error during data:', error.message);
 	}

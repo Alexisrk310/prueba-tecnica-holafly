@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({
 	const circumference = 251.2;
 	const radius = 40;
 	const offset =
-		circumference - (consumption?.totalComsumption / 100) * circumference;
+		circumference - (consumption?.totalComsumption || 0 / 100) * circumference;
 
 	const getBackgroundColor = () =>
 		status === 'Active'
@@ -69,7 +69,7 @@ const Card: React.FC<CardProps> = ({
 								ry="15"
 								fill="#f0f0f0"
 								stroke="#999"
-								stroke-width="1"
+								strokeWidth="1"
 							/>
 
 							<rect
@@ -85,24 +85,24 @@ const Card: React.FC<CardProps> = ({
 							<text
 								x="50"
 								y="50"
-								font-size="20"
-								text-anchor="middle"
-								dominant-baseline="middle"
+								fontSize="20"
+								textAnchor="middle"
+								dominantBaseline="middle"
 								fill="#333">
-								{consumption}
+								{consumption?.totalComsumption}
 							</text>
 
 							<text
 								x="50"
 								y="70"
-								font-size="10"
-								text-anchor="middle"
-								dominant-baseline="middle"
+								fontSize="10"
+								textAnchor="middle"
+								dominantBaseline="middle"
 								fill="#333">
 								{status == 'Pending'
-									? `/${consumption}GB`
+									? `/${consumption?.totalComsumption}GB`
 									: status === 'Pending'
-									? `/${consumption}Days`
+									? `/${consumption?.totalComsumption}Days`
 									: undefined}
 							</text>
 						</svg>

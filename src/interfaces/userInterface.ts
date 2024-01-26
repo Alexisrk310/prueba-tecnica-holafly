@@ -4,10 +4,10 @@ export interface userAuth {
 	password: string | undefined;
 }
 export interface UserDataStore {
-	stateData: UserData[];
-	addData: (value: UserData) => void;
+	cardConsumed: CardConsumed[];
+	fetchData: (value: string) => void;
 }
-export interface UserData {
+export interface CardConsumed {
 	status: 'Expired' | 'Pending' | 'Active';
 	dateStart: string;
 	dateEnd: string;

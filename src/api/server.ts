@@ -141,7 +141,7 @@ const users: User[] = [
 		id: 1,
 		name: 'holafly',
 		email: 'holafly@gmail.com',
-		password: 'holadly123',
+		password: 'holafly123',
 	},
 ];
 
@@ -167,7 +167,7 @@ const userData: Record<string, UserData[]> = {
 			dateStart: '01/01/2023',
 			dateEnd: '04/01/2023',
 			consumption: null,
-			flag: 'URL_IMAGE_COUNTRY_1',
+			flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/800px-Flag_of_Colombia.svg.png',
 			country: 'Colombia',
 			plan: '4 days, 3GB',
 		},
@@ -176,7 +176,7 @@ const userData: Record<string, UserData[]> = {
 			dateStart: '02/01/2023',
 			dateEnd: '02/01/2023',
 			consumption: null,
-			flag: 'URL_IMAGE_COUNTRY_2',
+			flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/800px-Flag_of_Colombia.svg.png',
 			country: 'Colombia',
 			plan: '30 days, 25GB',
 		},
@@ -187,7 +187,7 @@ const userData: Record<string, UserData[]> = {
 			consumption: {
 				totalConsumption: 1468006.4,
 			},
-			flag: 'URL_IMAGE_COUNTRY_3',
+			flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Flag_of_Peru_%28state%29.svg/1280px-Flag_of_Peru_%28state%29.svg.png',
 			country: 'Peru',
 			plan: '1 day, 1.4GB',
 		},
@@ -198,7 +198,7 @@ const userData: Record<string, UserData[]> = {
 			consumption: {
 				totalConsumption: 12582912,
 			},
-			flag: 'URL_IMAGE_COUNTRY_4',
+			flag: 'https://stuffedeyes.files.wordpress.com/2018/06/spain-2906824_960_720.png?w=960',
 			country: 'Spain',
 			plan: '10 days, 12GB',
 		},

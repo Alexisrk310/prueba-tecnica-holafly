@@ -30,13 +30,3 @@ export type CardProps = {
 	country: string;
 	plan: string;
 };
-
-export interface UserDataCard {
-	status: string;
-	dateStart: string;
-	dateEnd: string | null;
-	consumption: { totalConsumption: number } | null;
-	flag: string;
-	country: string;
-	plan: string;
-}
