@@ -21,6 +21,10 @@ export default function HomePage() {
 			{/* <Tabs /> */}
 			<div className="flex gap-10 justify-center items-center flex-wrap ">
 				{cardConsumed.map((dataUser: any, index) => {
+					let match = dataUser.plan.match(/,\s*(\d+)/);
+					let numGB = Number(match[1]);
+					console.log(dataUser.consumption);
+
 					return (
 						<Card
 							key={index}
@@ -30,8 +34,8 @@ export default function HomePage() {
 							flag={dataUser.flag}
 							country={dataUser.country}
 							plan={dataUser.plan}
-							consumption={dataUser.consumption / (1024 * 1024)}
-							// totalConsumption={dataUser.totalConsumption}
+							consumption={dataUser.consumption}
+							planGB={numGB}
 						/>
 					);
 				})}

@@ -13,12 +13,18 @@ const Card: React.FC<CardProps> = ({
 	country,
 	consumption,
 	plan,
+	planGB,
 }) => {
 	const circumference = 251.2;
 	const radius = 40;
 	const offset =
-		circumference - (consumption?.totalComsumption || 0 / 100) * circumference;
+		circumference -
+		(consumption?.totalComsumption / (1024 * 1024) || 0 / 100) * circumference;
 
+	status == 'Pending' ? console.log(consumption?.totalComsumption) : undefined;
+	let datePlan = plan.split(',');
+	let daysDatePlan = datePlan[0].trim();
+	let gbDatePlan = datePlan[1].trim();
 	const getBackgroundColor = () =>
 		status === 'Active'
 			? 'bg-blue-100'
@@ -38,18 +44,18 @@ const Card: React.FC<CardProps> = ({
 			: '';
 
 	return (
-		<div className="w-80 h-80  rounded overflow-hidden shadow-lg bg-white p-4 ">
-			<div className="flex justify-around items-center">
+		<div className="container w-80 h-75  rounded overflow-hidden shadow-lg bg-slate-50 p-4 ">
+			<div className="container flex justify-around items-center">
 				<div className="flex">
-					<div className="">
+					<div>
 						<img
-							className="rounded-full w-20"
+							className="rounded-2xl w-20 object-cover"
 							src={flag}
 							alt="Producto"
 							// width={100}
 							// height={100}
 						/>
-						<p className="mt-2 text-sm font-medium text-gray-600">{country}</p>
+						<p className="mt-2 text-sm font-bold text-gray-600">{country}</p>
 					</div>
 					<p
 						className={`mt-5 h-5 text-xs font-medium px-2.5 py-0.5 rounded ${getBackgroundColor()} ${getTextColor()}`}>
@@ -59,51 +65,47 @@ const Card: React.FC<CardProps> = ({
 				<div className="type">
 					{status === 'Pending' ? (
 						// DAYS
-						<svg width="100" height="150" xmlns="http://www.w3.org/2000/svg">
+						<svg width="120" height="160" xmlns="http://www.w3.org/2000/svg">
 							<rect
-								x="5"
-								y="5"
-								width="90"
-								height="90"
-								rx="15"
-								ry="15"
+								x="10"
+								y="10"
+								width="100"
+								height="100"
+								rx="20"
+								ry="20"
 								fill="#f0f0f0"
-								stroke="#999"
-								strokeWidth="1"
+								stroke="#ccc"
+								strokeWidth="2"
 							/>
 
 							<rect
-								x="5"
-								y="5"
-								width="90"
-								height="15"
-								rx="15"
-								ry="15"
+								x="10"
+								y="10"
+								width="100"
+								height="20"
+								rx="20"
+								ry="20"
 								fill="#4285F4"
 							/>
 
 							<text
-								x="50"
-								y="50"
-								fontSize="20"
+								x="60"
+								y="60"
+								fontSize="24"
 								textAnchor="middle"
 								dominantBaseline="middle"
 								fill="#333">
-								{consumption?.totalComsumption}
+								{gbDatePlan}
 							</text>
 
 							<text
-								x="50"
-								y="70"
-								fontSize="10"
+								x="60"
+								y="90"
+								fontSize="12"
 								textAnchor="middle"
 								dominantBaseline="middle"
-								fill="#333">
-								{status == 'Pending'
-									? `/${consumption?.totalComsumption}GB`
-									: status === 'Pending'
-									? `/${consumption?.totalComsumption}Days`
-									: undefined}
+								fill="#555">
+								{daysDatePlan}
 							</text>
 						</svg>
 					) : status === 'Active' ? (
@@ -125,7 +127,7 @@ const Card: React.FC<CardProps> = ({
 									strokeWidth="8"
 									fill="none"
 									strokeDasharray={circumference}
-									strokeDashoffset={offset}
+									strokeDashoffset={planGB == undefined ? 0 : planGB * 1024}
 								/>
 								<text
 									x="50"
@@ -134,7 +136,16 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{offset == undefined ? 0 : offset}
+									{offset == undefined ? 0 : Math.trunc(offset)}
+								</text>
+								<text
+									x="50"
+									y="65"
+									fontSize="12"
+									textAnchor="middle"
+									dy=".3em"
+									fill="#3498db">
+									{`/${planGB}` == undefined ? 0 : `/${planGB}GB`}
 								</text>
 							</svg>
 						</div>
@@ -152,7 +163,7 @@ const Card: React.FC<CardProps> = ({
 			<div className="flex justify-center flex-col gap-1">
 				{status === 'Active' ? (
 					<>
-						<button className="bg-white hover:bg-slate-400 text-black font-bold py-2 px-4 rounded-md">
+						<button className="bg-slate-100 hover:bg-slate-200 active:bg-slate-400 text-black font-bold py-2 px-4 rounded-md">
 							View Details
 						</button>
 						<button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md">

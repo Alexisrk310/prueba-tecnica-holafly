@@ -29,4 +29,5 @@ export type CardProps = {
 	flag: string;
 	country: string;
 	plan: string;
+	planGB?: number;
 };
