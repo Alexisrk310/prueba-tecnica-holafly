@@ -13,6 +13,7 @@ export default function HomePage() {
 		let userData = JSON.parse(userDataString as any);
 		fetchData(String(userData?.id));
 	}, [fetchData]);
+	
 
 	const tabsInfo = [
 		{ label: 'Active', panelId: 'panel-1' },
@@ -57,11 +58,16 @@ export default function HomePage() {
 
 	return (
 		<>
+			<div className="absolute w-60 h-60 rounded-xl bg-purple-300 top-40 -left-16 z-0 transform rotate-45 hidden md:block"></div>
+			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 -bottom-6 -right-10 transform rotate-12 hidden md:block"></div>
+
 			<div className="flex w-screen justify-center">
 				<h1 className="font-bold m-10">TARJETAS</h1>
 			</div>
 
 			<Tabs tabs={tabsInfo}>{tabsContent}</Tabs>
+			<div className="w-40 h-40 absolute bg-purple-300 rounded-full top-40 right-12 hidden md:block"></div>
+			<div className="w-20 h-40 absolute bg-purple-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block"></div>
 		</>
 	);
 }

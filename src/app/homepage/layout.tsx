@@ -16,7 +16,15 @@ export default function Layout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div>
+		<div
+			className="
+        antialiased
+        bg-gradient-to-r
+        from-pink-300
+        via-purple-300
+        to-indigo-400
+        h-full  
+      ">
 			<NavBar />
 			{children}
 		</div>
