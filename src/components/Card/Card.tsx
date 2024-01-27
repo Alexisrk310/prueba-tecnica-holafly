@@ -45,7 +45,7 @@ const Card: React.FC<CardProps> = ({
 	console.log(planGB);
 
 	return (
-		<div className="container w-80 h-75  rounded overflow-hidden shadow-lg bg-slate-50 p-4 ">
+		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 p-4 ">
 			<div className="container flex justify-around items-center">
 				<div className="flex">
 					<div>

@@ -1,41 +1,44 @@
 'use client';
-import React from 'react';
-import './NavBar.css';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { Dropdown } from '..';
 
-export type NavBarProps = {
-	// types...
-};
+type NavBarProps = {};
 
-const NavBar: React.FC<NavBarProps> = ({}) => {
-	const links = [
-		{ name: 'Home', href: '/homepage' },
-		{
-			name: 'Cerrar sesión',
-			href: '/',
-			handleClick: () => {
-				userData && localStorage.removeItem('@user');
-			},
-		},
-	];
+const NavBar: React.FC<NavBarProps> = () => {
+	const [menuOpen, setMenuOpen] = useState(false);
 	let userDataString = localStorage.getItem('@user');
 
 	// Convertir la cadena JSON a un objeto JavaScript
-	let userData = JSON.parse(userDataString as any);
+	let userData = JSON.parse(userDataString as string);
+	const toggleMenu = () => {
+		setMenuOpen(!menuOpen);
+	};
+
 	return (
 		<header>
 			<nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white">
 				<div>
-					<a href="#">Cards</a>
+					<Link href={'/homepage'}>
+						<img
+							src="https://selectra.es/sites/selectra.es/files/images/logos/holalfy.png"
+							alt="logo holafly"
+							width={60}
+							height={40}
+						/>
+					</Link>
 				</div>
 
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					id="menu-button"
-					className="h-6 w-6 cursor-pointer md:hidden block"
+					className={`h-6 w-6 cursor-pointer md:hidden block ${
+						menuOpen ? 'open' : ''
+					}`}
 					fill="none"
 					viewBox="0 0 24 24"
-					stroke="currentColor">
+					stroke="currentColor"
+					onClick={toggleMenu}>
 					<path
 						strokeLinecap="round"
 						strokeLinejoin="round"
@@ -45,23 +48,11 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
 				</svg>
 
 				<div
-					className="hidden w-full md:flex md:items-center md:w-auto"
+					className={`w-full md:flex md:items-center md:w-auto ${
+						menuOpen ? 'block' : 'hidden'
+					}`}
 					id="menu">
-					<ul className="pt-4 text-base text-gray-700 md:flex md:justify-between  md:pt-0">
-						{links.map((link, index) => {
-							return (
-								<li key={index}>
-									<Link
-										key={link.name}
-										href={link.href}
-										onClick={link.handleClick}
-										className="md:p-4 py-2 block hover:text-purple-400">
-										{link.name}
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
+					<Dropdown username={userData?.name} />
 				</div>
 			</nav>
 		</header>

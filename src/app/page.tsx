@@ -23,7 +23,11 @@ export default function Home() {
 			if (userData.message == 'Login successful') {
 				localStorage.setItem(
 					'@user',
-					JSON.stringify({ id: userData.userId, name: userData.name })
+					JSON.stringify({
+						id: userData.userId,
+						name: userData.name,
+						token: userData.token,
+					})
 				);
 				router.push('/homepage');
 			}

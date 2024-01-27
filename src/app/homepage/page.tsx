@@ -13,7 +13,6 @@ export default function HomePage() {
 		let userData = JSON.parse(userDataString as any);
 		fetchData(String(userData?.id));
 	}, [fetchData]);
-	
 
 	const tabsInfo = [
 		{ label: 'Active', panelId: 'panel-1' },
@@ -62,7 +61,13 @@ export default function HomePage() {
 			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 -bottom-6 -right-10 transform rotate-12 hidden md:block"></div>
 
 			<div className="flex w-screen justify-center">
-				<h1 className="font-bold m-10">TARJETAS</h1>
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Holafly-logo.svg/2560px-Holafly-logo.svg.png"
+					alt="holafly"
+					width={200}
+					height={100}
+					className="m-5"
+				/>
 			</div>
 
 			<Tabs tabs={tabsInfo}>{tabsContent}</Tabs>

@@ -11,11 +11,15 @@ interface Iset {
 	) => void;
 }
 export const getUserData = async (id: string, set: Iset['set']) => {
+	let userDataString = localStorage.getItem('@user');
+	let userData = JSON.parse(userDataString as any);
+
 	const userDataEndpoint = `http://localhost:3001/api/users/${id}/data`;
 	try {
 		const response = await fetch(userDataEndpoint, {
 			headers: {
 				'Content-Type': 'application/json',
+				'x-token': userData?.token,
 			},
 		});
 
