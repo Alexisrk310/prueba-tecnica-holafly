@@ -45,7 +45,7 @@ const Card: React.FC<CardProps> = ({
 	console.log(planGB);
 
 	return (
-		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 p-4 ">
+		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-4 ">
 			<div className="container flex justify-around items-center">
 				<div className="flex">
 					<div>
@@ -164,15 +164,15 @@ const Card: React.FC<CardProps> = ({
 			<div className="flex justify-center flex-col gap-1">
 				{status === 'Active' ? (
 					<>
-						<button className="bg-slate-100 hover:bg-slate-200 active:bg-slate-400 text-black font-bold py-2 px-4 rounded-md">
+						<button className="bg-slate-100 dark:bg-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600 active:bg-slate-400 dark:active:bg-slate-700 text-black font-bold py-2 px-4 rounded-md">
 							View Details
 						</button>
-						<button className="bg-green-500 hover:bg-green-600 active:bg-green-400 text-white font-bold py-2 px-4 rounded-md">
+						<button className="bg-green-500 dark:bg-green-700 hover:bg-green-600 dark:hover:bg-green-800 active:bg-green-400 dark:active:bg-green-950 text-white font-bold py-2 px-4 rounded-md">
 							Add more data
 						</button>
 					</>
 				) : status === 'Pending' ? (
-					<button className="bg-red-500 hover:bg-red-600 active:bg-red-400 text-white font-bold py-2 px-4 rounded-md">
+					<button className="bg-red-500 dark:bg-red-800 hover:bg-red-600 dark:hover:bg-red-700 active:bg-red-400 dark:active:bg-red-950 text-white font-bold py-2 px-4 rounded-md">
 						View Details and Install
 					</button>
 				) : status === 'Expired' ? (
