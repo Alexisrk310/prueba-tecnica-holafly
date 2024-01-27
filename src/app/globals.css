@@ -77,3 +77,19 @@ body {
 .indicator {
 	transition: left 0.4s;
 }
+
+/* ANIMATIONS CARDS */
+@keyframes fall {
+	0% {
+		transform: translateY(-50px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.animate-fall {
+	animation: fall 0.5s ease-out; /* Puedes ajustar la duración y la función de temporización según tus preferencias */
+}

@@ -44,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 	];
 
 	const isMobile = window.innerWidth <= 768;
-	const dropdownClasses = `absolute font-normal bg-white shadow overflow-hidden rounded w-48 border mt-2 py-1 ${
+	const dropdownClasses = `absolute font-normal bg-white dark:bg-slate-950 shadow overflow-hidden rounded w-48 border mt-2 py-1 ${
 		isMobile ? 'left-0' : 'right-0'
 	} z-20`;
 
@@ -52,7 +52,7 @@ const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 		<div className="relative" ref={dropdownRef}>
 			<button onClick={toggleDropdown} className="flex items-center">
 				<img
-					src="http://www.gravatar.com/avatar?d=mm"
+					src="https://static.vecteezy.com/system/resources/previews/020/911/750/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png"
 					alt="avatar"
 					className="w-8 h-8 rounded-full mr-2"
 				/>
@@ -81,8 +81,10 @@ const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 									viewBox="0 0 24 24"
 									width="24"
 									height="24"
-									className="text-gray-600">
-									<path d={item.icon} className="heroicon-ui"></path>
+									className="text-gray-600 dark:text-black">
+									<path
+										d={item.icon}
+										className="heroicon-ui dark:text-white"></path>
 								</svg>
 								<span className="ml-2">{item.label}</span>
 							</Link>

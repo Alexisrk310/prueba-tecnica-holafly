@@ -19,7 +19,7 @@ const Tab: React.FC<TabProps> = ({ label, panelId }) => (
 		aria-controls={panelId}
 		tabIndex={-1}
 		className="relative block h-10 px-6 tab rounded-full">
-		<span className="text-gray-800">{label}</span>
+		<span className="text-gray-800 dark:text-gray-200">{label}</span>
 	</button>
 );
 
@@ -27,7 +27,7 @@ const TabPanel: React.FC<any> = ({ id, children }) => (
 	<div
 		role="tabpanel"
 		id={id}
-		className="absolute top-0 invisible opacity-0 tab-panel p-6 transition duration-300">
+		className="flex absolute top-0 invisible opacity-0 tab-panel p-6 transition duration-300">
 		{children}
 	</div>
 );
@@ -71,6 +71,9 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 				});
 			});
 		});
+
+		// Simulate a click on the first tab to make it sink initially
+		tabsElements[0].click();
 	}, []);
 
 	return (
@@ -80,8 +83,8 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 					<div
 						role="tablist"
 						aria-label="tabs"
-						className="relative w-max mx-auto h-12 grid grid-cols-3 items-center px-[3px] rounded-full bg-gray-900/20 overflow-hidden shadow-2xl shadow-900/20 transition">
-						<div className="absolute indicator h-11 my-auto top-0 bottom-0 left-0 rounded-full bg-white shadow-md transition"></div>
+						className="relative w-max mx-auto h-12 grid grid-cols-3 items-center px-[3px] rounded-full bg-gray-900/20 dark:bg-slate-950 overflow-hidden shadow-2xl shadow-900/20 transition">
+						<div className="absolute indicator h-11 my-auto top-0 bottom-0 left-0 rounded-full bg-white dark:bg-slate-900 shadow-md transition"></div>
 						{tabs.map((tab, index) => (
 							<Tab key={index} label={tab.label} panelId={tab.panelId} />
 						))}

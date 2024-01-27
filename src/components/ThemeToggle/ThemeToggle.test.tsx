@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CircularProgress from './CircularProgress';
+import ThemeToggle from './ThemeToggle';
 
-describe('CircularProgress', () => {
+describe('ThemeToggle', () => {
     it('should render successfully', () => {
-        const { baseElement } = render(<CircularProgress />);
+        const { baseElement } = render(<ThemeToggle />);
 
         expect(baseElement).toBeTruthy();
     });

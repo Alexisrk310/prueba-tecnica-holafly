@@ -1,23 +1,22 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Dropdown } from '..';
+import { Dropdown, ThemeToggle } from '..';
 
 type NavBarProps = {};
 
 const NavBar: React.FC<NavBarProps> = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
-	let userDataString = localStorage.getItem('@user');
 
 	// Convertir la cadena JSON a un objeto JavaScript
-	let userData = JSON.parse(userDataString as string);
+	let userData = JSON.parse(localStorage.getItem('@user') as string) || '';
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen);
 	};
 
 	return (
 		<header>
-			<nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white">
+			<nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 dark:text-white bg-white dark:bg-gray-950">
 				<div>
 					<Link href={'/homepage'}>
 						<img
@@ -48,10 +47,11 @@ const NavBar: React.FC<NavBarProps> = () => {
 				</svg>
 
 				<div
-					className={`w-full md:flex md:items-center md:w-auto ${
+					className={`w-full md:flex md:items-center mr-5 md:w-auto ${
 						menuOpen ? 'block' : 'hidden'
 					}`}
 					id="menu">
+					<ThemeToggle />
 					<Dropdown username={userData?.name} />
 				</div>
 			</nav>
