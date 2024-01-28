@@ -2,16 +2,27 @@
 import React, { useEffect } from 'react';
 import { Card, Tabs } from '@/components';
 import { useUserDataStore } from '@/store/userDataStore';
+import { userStore } from '@/store/userStore';
+import { IUserStore } from '@/interfaces/userProfile.interface';
 
 export default function HomePage() {
 	const { fetchData, cardConsumed } = useUserDataStore((state) => state);
-
 	useEffect(() => {
-		let userDataString = localStorage.getItem('@user');
-
 		// Convertir la cadena JSON a un objeto JavaScript
-		let userData = JSON.parse(userDataString as any);
-		fetchData(String(userData?.id));
+		try {
+			let userDataString = localStorage.getItem('user');
+
+			if (userDataString) {
+				let {
+					state: { profile },
+				} = JSON.parse(userDataString);
+				fetchData(profile?.id);
+			} else {
+				console.error('No se encontraron datos de usuario en localStorage.');
+			}
+		} catch (error) {
+			console.error('Error al procesar los datos del usuario:', error);
+		}
 	}, [fetchData]);
 
 	const tabsInfo = [

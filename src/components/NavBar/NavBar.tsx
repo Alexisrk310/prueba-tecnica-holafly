@@ -2,14 +2,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Dropdown, ThemeToggle } from '..';
+import { userStore } from '@/store/userStore';
+import { IUserStore } from '@/interfaces/userProfile.interface';
 
-type NavBarProps = {};
-
-const NavBar: React.FC<NavBarProps> = () => {
+const NavBar: React.FC = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
-
-	// Convertir la cadena JSON a un objeto JavaScript
-	let userData = JSON.parse(localStorage.getItem('@user') as string) || '';
+	const { profile } = userStore((state: IUserStore) => state);
 	const toggleMenu = () => {
 		setMenuOpen(!menuOpen);
 	};
@@ -52,7 +50,7 @@ const NavBar: React.FC<NavBarProps> = () => {
 					}`}
 					id="menu">
 					<ThemeToggle />
-					<Dropdown username={userData?.name} />
+					<Dropdown username={profile?.name} />
 				</div>
 			</nav>
 		</header>

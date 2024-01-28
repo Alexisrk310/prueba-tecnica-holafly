@@ -1,40 +1,34 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import './ThemeToggle.css';
+import React, { useEffect, useRef, useState } from 'react';
 
-export type ThemeToggleProps = {
-	// types...
-};
+const ThemeToggle: React.FC = ({}) => {
+	const [theme, setTheme] = useState<'dark' | 'light'>('light');
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({}) => {
-	const [theme, setTheme] = useState(() => {
-		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			return 'dark';
-		}
-
-		return 'light';
-	});
+	const htmlRef = useRef<HTMLHtmlElement>(null);
+	const rootRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		const htmlElement = htmlRef.current;
+		const rootElement = rootRef.current;
+
 		if (theme === 'dark') {
-			document.querySelector('html')?.classList.add('dark');
-			document.querySelector('#root')?.classList.add('bg-slate-900');
-			document.querySelector('#root')?.classList.remove('bg-white');
+			htmlElement?.classList.add('dark');
+			rootElement?.classList.add('bg-slate-900');
+			rootElement?.classList.remove('bg-white');
 		} else {
-			document.querySelector('html')?.classList.remove('dark');
-			document.querySelector('#root')?.classList.remove('bg-slate-900');
-			document.querySelector('#root')?.classList.add('bg-white');
+			htmlElement?.classList.remove('dark');
+			rootElement?.classList.remove('bg-slate-900');
+			rootElement?.classList.add('bg-white');
 		}
 	}, [theme]);
 
 	const handleChangeTheme = () => {
 		setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
 	};
-	console.log(theme);
 
 	return (
 		<>
-			{theme == 'dark' ? (
+			{theme === 'dark' ? (
 				<div onClick={handleChangeTheme} style={{ cursor: 'pointer' }}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +36,6 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({}) => {
 						width="30"
 						height="25">
 						<circle cx="15" cy="15" r="15" fill="#000000" />
-
 						<circle cx="5" cy="15" r="15" fill="#ffffff" />
 					</svg>
 				</div>

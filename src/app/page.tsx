@@ -5,12 +5,16 @@ import { useRouter } from 'next/navigation';
 import { useAuthForm } from '@/hooks/useAuthForm';
 import { FormEvent } from 'react';
 import { loginAuth } from '@/services/post/loginAuth';
+import { userStore } from '@/store/userStore';
+import { IUserStore } from '@/interfaces/userProfile.interface';
 export default function Home() {
+	const { setProfile, setAuth } = userStore((state: IUserStore) => state);
 	const router = useRouter();
 	const { formAuth, setFormAuth, handleChange } = useAuthForm({
 		email: 'holafly@gmail.com',
 		password: 'holafly123',
 	});
+
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		setFormAuth({
@@ -21,14 +25,13 @@ export default function Home() {
 			const userData = await loginAuth(formAuth);
 			console.log(userData);
 			if (userData.message == 'Login successful') {
-				localStorage.setItem(
-					'@user',
-					JSON.stringify({
-						id: userData.userId,
-						name: userData.name,
-						token: userData.token,
-					})
-				);
+				setProfile({
+					name: userData.name,
+					id: userData.userId,
+				});
+				setAuth({
+					token: userData.token,
+				});
 				router.push('/homepage');
 			}
 			// Aquí puedes realizar acciones adicionales después de un inicio de sesión exitoso, si es necesario

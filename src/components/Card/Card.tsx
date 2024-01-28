@@ -1,7 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import './Card.css';
-// import { CircularProgress } from '../CircularProgress';
 import Image from 'next/image';
 import { CardProps } from '../../interfaces/cardProps';
 
@@ -20,8 +18,6 @@ const Card: React.FC<CardProps> = ({
 	const offset =
 		circumference -
 		(consumption?.totalComsumption / (1024 * 1024) || 0 / 100) * circumference;
-
-	status == 'Pending' ? console.log(consumption?.totalComsumption) : undefined;
 	let datePlan = plan.split(',');
 	let daysDatePlan = datePlan[0].trim();
 	let gbDatePlan = datePlan[1].trim();
@@ -42,7 +38,6 @@ const Card: React.FC<CardProps> = ({
 			: status === 'Expired'
 			? 'text-gray-500'
 			: '';
-	console.log(planGB);
 
 	return (
 		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-4 ">
@@ -53,8 +48,8 @@ const Card: React.FC<CardProps> = ({
 							className="rounded-2xl w-20 object-cover"
 							src={flag}
 							alt="Producto"
-							// width={100}
-							// height={100}
+							width={80}
+							height={80}
 						/>
 						<p className="mt-2 text-sm font-bold text-gray-600">{country}</p>
 					</div>
@@ -64,7 +59,7 @@ const Card: React.FC<CardProps> = ({
 					</p>
 				</div>
 				<div className="type">
-					{status === 'Pending' ? (
+					{status === 'Pending' && (
 						// DAYS
 						<svg width="120" height="160" xmlns="http://www.w3.org/2000/svg">
 							<rect
@@ -109,7 +104,8 @@ const Card: React.FC<CardProps> = ({
 								{daysDatePlan}
 							</text>
 						</svg>
-					) : status === 'Active' ? (
+					)}
+					{status === 'Active' && (
 						<div>
 							<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
 								<circle
@@ -128,7 +124,7 @@ const Card: React.FC<CardProps> = ({
 									strokeWidth="8"
 									fill="none"
 									strokeDasharray={circumference}
-									strokeDashoffset={planGB == undefined ? 0 : planGB * 1024}
+									strokeDashoffset={!planGB ? 0 : planGB * 1024}
 								/>
 								<text
 									x="50"
@@ -137,7 +133,7 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{offset == undefined ? 0 : Math.trunc(offset)}
+									{offset ? 0 : Math.trunc(offset)}
 								</text>
 								<text
 									x="50"
@@ -146,18 +142,14 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{`/${planGB}` == undefined ? 0 : `/${planGB}GB`}
+									{`/${planGB}` ? 0 : `/${planGB}GB`}
 								</text>
 							</svg>
 						</div>
-					) : // <CircularProgress />
-					status === 'Expired' ? (
-						<></>
-					) : undefined}
+					)}
 				</div>
 			</div>
-			{/* <p className="text-gray-700 text-base mt-4">5 days plan, 5GB</p> */}
-			{/* <p className="text-gray-700 text-base mt-4">{date}</p> */}
+
 			<p>{`${dateStart}${dateEnd ? ` - ${dateEnd}` : ''}`}</p>
 			<p className="text-gray-700 text-base mt-4">{plan}</p>
 			<div className="px-6 py-4"></div>

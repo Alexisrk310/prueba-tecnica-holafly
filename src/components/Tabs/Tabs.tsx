@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState, ReactNode } from 'react';
-import './Tabs.css';
 
 interface TabProps {
 	label: string;

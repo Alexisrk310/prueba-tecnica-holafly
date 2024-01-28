@@ -11,22 +11,24 @@ interface Iset {
 	) => void;
 }
 export const getUserData = async (id: string, set: Iset['set']) => {
-	let userDataString = localStorage.getItem('@user');
-	let userData = JSON.parse(userDataString as any);
+	let userDataString = localStorage.getItem('user');
+	let {
+		state: { auth },
+	} = JSON.parse(userDataString as any);
 
 	const userDataEndpoint = `http://localhost:3001/api/users/${id}/data`;
 	try {
 		const response = await fetch(userDataEndpoint, {
 			headers: {
 				'Content-Type': 'application/json',
-				'x-token': userData?.token,
+				'x-token': auth?.token,
 			},
 		});
 
 		if (!response.ok) {
 			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
-
+		setTimeout(() => {}, 3000);
 		const data = await response.json();
 		set({ cardConsumed: data });
 	} catch (error: any) {

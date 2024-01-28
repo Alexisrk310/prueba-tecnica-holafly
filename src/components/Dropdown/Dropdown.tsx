@@ -43,10 +43,7 @@ const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 		},
 	];
 
-	const isMobile = window.innerWidth <= 768;
-	const dropdownClasses = `absolute font-normal bg-white dark:bg-slate-950 shadow overflow-hidden rounded w-48 border mt-2 py-1 ${
-		isMobile ? 'left-0' : 'right-0'
-	} z-20`;
+	const dropdownClasses = `absolute font-normal bg-white dark:bg-slate-950 shadow overflow-hidden rounded w-48 border mt-2 py-1 z-20`;
 
 	return (
 		<div className="relative" ref={dropdownRef}>
