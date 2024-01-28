@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({
 			: '';
 
 	return (
-		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-4 ">
+		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-7 ">
 			<div className="container flex justify-around items-center">
 				<div className="flex">
 					<div>
@@ -51,7 +51,9 @@ const Card: React.FC<CardProps> = ({
 							width={80}
 							height={80}
 						/>
-						<p className="mt-2 text-sm font-bold text-gray-600">{country}</p>
+						<p className="mt-2 text-lg font-bold text-gray-600 dark:text-black">
+							{country}
+						</p>
 					</div>
 					<p
 						className={`mt-5 h-5 text-xs font-medium px-2.5 py-0.5 rounded ${getBackgroundColor()} ${getTextColor()}`}>
@@ -153,18 +155,18 @@ const Card: React.FC<CardProps> = ({
 			<p>{`${dateStart}${dateEnd ? ` - ${dateEnd}` : ''}`}</p>
 			<p className="text-gray-700 text-base mt-4">{plan}</p>
 			<div className="px-6 py-4"></div>
-			<div className="flex justify-center flex-col gap-1">
+			<div className="flex justify-center flex-col gap-3">
 				{status === 'Active' ? (
 					<>
-						<button className="bg-slate-100 dark:bg-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600 active:bg-slate-400 dark:active:bg-slate-700 text-black font-bold py-2 px-4 rounded-md">
+						<button className="bg-slate-200 dark:bg-slate-400 hover:bg-slate-300  text-black font-bold py-2 px-4 rounded-md">
 							View Details
 						</button>
-						<button className="bg-green-500 dark:bg-green-700 hover:bg-green-600 dark:hover:bg-green-800 active:bg-green-400 dark:active:bg-green-950 text-white font-bold py-2 px-4 rounded-md">
+						<button className="bg-green-500 dark:bg-green-600 hover:bg-green-700  text-white font-bold py-2 px-4 rounded-md">
 							Add more data
 						</button>
 					</>
 				) : status === 'Pending' ? (
-					<button className="bg-red-500 dark:bg-red-800 hover:bg-red-600 dark:hover:bg-red-700 active:bg-red-400 dark:active:bg-red-950 text-white font-bold py-2 px-4 rounded-md">
+					<button className="bg-red-500 dark:bg-red-800 hover:bg-red-600  text-white font-bold py-2 px-4 rounded-md">
 						View Details and Install
 					</button>
 				) : status === 'Expired' ? (

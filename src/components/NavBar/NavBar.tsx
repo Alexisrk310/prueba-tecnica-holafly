@@ -6,6 +6,7 @@ import { userStore } from '@/store/userStore';
 import { IUserStore } from '@/interfaces/userProfile.interface';
 
 const NavBar: React.FC = () => {
+	
 	const [menuOpen, setMenuOpen] = useState(false);
 	const { profile } = userStore((state: IUserStore) => state);
 	const toggleMenu = () => {

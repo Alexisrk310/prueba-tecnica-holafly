@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { userStore } from '@/store/userStore';
+import { IUserStore } from '@/interfaces/userProfile.interface';
 
 type DropdownProps = {
 	username: string;
@@ -9,7 +11,7 @@ type DropdownProps = {
 const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const dropdownRef = useRef<HTMLDivElement>(null);
-
+	const { setProfile, setAuth } = userStore((state: IUserStore) => state);
 	const handleClickOutside = (event: MouseEvent) => {
 		if (
 			dropdownRef.current &&
@@ -40,6 +42,15 @@ const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 			label: 'Sign off',
 			link: '/',
 			icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 13h-2v-2h2v2zm0-4h-2V7h2v4z',
+			signOff: () => {
+				setProfile({
+					name: '',
+					id: '',
+				});
+				setAuth({
+					token: '',
+				});
+			},
 		},
 	];
 
@@ -71,6 +82,7 @@ const Dropdown: React.FC<DropdownProps> = ({ username }) => {
 						<li key={index}>
 							<Link
 								href={item.link}
+								onClick={item.signOff}
 								className="flex items-center px-3 py-3 hover:bg-gray-200">
 								<svg
 									fill="currentColor"
