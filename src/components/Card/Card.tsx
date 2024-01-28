@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({
 			: '';
 
 	return (
-		<div className="container min-w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-7 ">
+		<div className=" min-w-72 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-7 ">
 			<div className="container flex justify-between items-center">
 				<div className="flex">
 					<div>

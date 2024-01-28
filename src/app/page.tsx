@@ -1,7 +1,5 @@
 'use client';
 import { useRouter } from 'next/navigation';
-// import { Card } from '@/components/Card';
-// import Image from 'next/image';
 import { useAuthForm } from '@/hooks/useAuthForm';
 import { FormEvent } from 'react';
 import { loginAuth } from '@/services/post/loginAuth';

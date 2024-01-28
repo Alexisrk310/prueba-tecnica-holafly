@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Tabs } from '@/components';
 import { useUserDataStore } from '@/store/userDataStore';
 import { userStore } from '@/store/userStore';
@@ -26,48 +26,23 @@ export default function HomePage() {
 		}
 	}, [fetchData]);
 
-	const tabsInfo = [
-		{ label: 'Active', panelId: 'panel-1' },
-		{ label: 'Pending', panelId: 'panel-2' },
-		{ label: 'Expired', panelId: 'panel-3' },
+	const tabsData = [
+		{ label: 'Active', panelId: 'panel-activo', status: 'Active' },
+		{ label: 'Pending', panelId: 'panel-pendiente', status: 'Pending' },
+		{ label: 'Expired', panelId: 'panel-caducado', status: 'Expired' },
 	];
 
-	const groupedByStatus: Record<string, any[]> = groupBy(
-		cardConsumed,
-		'status'
-	);
+	const [activeTab, setActiveTab] = useState('Active');
 
-	const tabsContent = tabsInfo.map((tab, index) => {
-		const dataForStatus = groupedByStatus[tab.label] || [];
-
-		return (
-			<div key={index} className="flex gap-4">
-				{dataForStatus.map((dataUser, dataIndex: number) => {
-					let match = dataUser.plan.match(/,\s*(\d+)/);
-					let numGB = Number(match[1]);
-					return (
-						<Card
-							key={dataUser.id}
-							status={dataUser.status}
-							dateStart={dataUser.dateStart}
-							dateEnd={dataUser.dateEnd}
-							flag={dataUser.flag}
-							country={dataUser.country}
-							plan={dataUser.plan}
-							consumption={dataUser.consumption}
-							planGB={numGB}
-						/>
-					);
-				})}
-			</div>
-		);
-	});
+	const handleTabChange = (status: string) => {
+		setActiveTab(status);
+	};
+	console.log(cardConsumed);
 
 	return (
 		<>
-			{/* <div className="absolute w-60 h-60 rounded-xl bg-purple-300 dark:bg-slate-700 top-40 -left-16 z-0 transform rotate-45 hidden md:block animate-fall"></div>
-			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 dark:bg-slate-700 -bottom-6 -right-10 transform rotate-12 hidden md:block animate-fall"></div> */}
-
+			<div className="absolute w-60 h-60 rounded-xl bg-purple-300 dark:bg-slate-700 top-40 -left-16 z-0 transform rotate-45 hidden md:block animate-fall"></div>
+			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 dark:bg-slate-700 -bottom-6 -right-10 transform rotate-12 hidden md:block animate-fall"></div>
 			<div className="flex w-screen justify-center">
 				<img
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Holafly-logo.svg/2560px-Holafly-logo.svg.png"
@@ -78,17 +53,41 @@ export default function HomePage() {
 				/>
 			</div>
 			<div className="animate-fall">
-				<Tabs tabs={tabsInfo}>{tabsContent}</Tabs>
+				<Tabs
+					tabs={tabsData.map((tab) => ({
+						...tab,
+						onChangeTab: handleTabChange,
+					}))}
+				/>
 			</div>
-			{/* <div className="w-40 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full top-40 right-12 hidden md:block animate-fall"></div>
-			<div className="w-20 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block animate-fall"></div> */}
+
+			<div className="flex justify-center m-5 flex-wrap gap-4">
+				{cardConsumed
+					.filter((dataUser) => dataUser.status === activeTab)
+					.map((dataUser, index) => {
+						console.log(dataUser);
+						let match = dataUser.plan.match(/,\s*(\d+)/);
+						let numGB: number | undefined = match
+							? Number(match[1])
+							: undefined;
+
+						return (
+							<Card
+								key={index}
+								status={dataUser.status}
+								dateStart={dataUser.dateStart}
+								dateEnd={dataUser.dateEnd}
+								flag={dataUser.flag}
+								country={dataUser.country}
+								plan={dataUser.plan}
+								consumption={dataUser.consumption?.totalConsumption || 0} // Se utiliza el operador de fusión nula para manejar el valor nulo o indefinido
+								planGB={numGB}
+							/>
+						);
+					})}
+			</div>
+			<div className="w-40 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full top-40 right-12 hidden md:block animate-fall"></div>
+			<div className="w-20 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block animate-fall"></div>
 		</>
 	);
-}
-
-function groupBy<T>(array: T[], key: keyof T): Record<string, T[]> {
-	return array.reduce((result, item) => {
-		(result[item[key] as any] = result[item[key] as any] || []).push(item);
-		return result;
-	}, {} as Record<string, T[]>);
 }

@@ -17,4 +17,5 @@ export interface CardConsumed {
 	plan: string;
 	city: string;
 	storage: string;
+	id: string
 }
