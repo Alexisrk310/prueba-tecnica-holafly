@@ -29,7 +29,12 @@ const server = express();
 server.use(bodyParser.json());
 server.use(
 	cors({
-		origin: '*',
+		origin: [
+			'prueba-tecnica-holafly-nwgqj4f2s-alexisrk310.vercel.app',
+			'https://prueba-tecnica-holafly.vercel.app/',
+			'http://localhost:3000',
+			'https://prueba-tecnica-holafly-git-main-alexisrk310.vercel.app',
+		],
 	})
 );
 
