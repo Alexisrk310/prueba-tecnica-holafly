@@ -3,42 +3,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-
-interface User {
-	id: number;
-	name: string;
-	email: string;
-	password: string;
-}
-
-interface UserData {
-	id: number;
-	status: string;
-	dateStart: string;
-	dateEnd: string | null;
-	consumption: { totalConsumption: number } | null;
-	flag: string;
-	country: string;
-	plan: string;
-}
-
+const { User, UserData } = require('./interfaces/IUser.interface');
 const PORT = process.env.PORT || 3001;
-const SECRET_KEY = 'your-secret-key';
+const SECRET_KEY = 'HOLAFLY';
 
 const server = express();
 server.use(bodyParser.json());
 server.use(
 	cors({
-		origin: [
-			'prueba-tecnica-holafly-nwgqj4f2s-alexisrk310.vercel.app',
-			'https://prueba-tecnica-holafly.vercel.app/',
-			'http://localhost:3000',
-			'https://prueba-tecnica-holafly-git-main-alexisrk310.vercel.app',
-		],
+		origin: '*',
 	})
 );
 
-const users: User[] = [
+const users: (typeof User)[] = [
 	{
 		id: 1,
 		name: 'holafly',
@@ -53,7 +30,7 @@ const users: User[] = [
 	},
 ];
 
-function generateToken(user: User): string {
+function generateToken(user: typeof User): string {
 	return jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
 }
 
@@ -105,7 +82,7 @@ server.post('/api/login', (req: any, res: any) => {
 	});
 });
 
-const userData: UserData[] = [
+const userData: (typeof UserData)[] = [
 	{
 		id: 1,
 		status: 'Expired',
