@@ -7,6 +7,8 @@ import { IUserStore } from '@/interfaces/userProfile.interface';
 
 export default function HomePage() {
 	const { fetchData, cardConsumed } = useUserDataStore((state) => state);
+	const { profile: profil } = userStore((state: IUserStore) => state);
+
 	useEffect(() => {
 		// Convertir la cadena JSON a un objeto JavaScript
 		try {
@@ -16,7 +18,7 @@ export default function HomePage() {
 				let {
 					state: { profile },
 				} = JSON.parse(userDataString);
-				fetchData(profile?.id);
+				fetchData(profile.id || profil.id);
 			} else {
 				console.error('No se encontraron datos de usuario en localStorage.');
 			}

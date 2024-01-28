@@ -28,7 +28,6 @@ export const getUserData = async (id: string, set: Iset['set']) => {
 		if (!response.ok) {
 			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
-		setTimeout(() => {}, 3000);
 		const data = await response.json();
 		set({ cardConsumed: data });
 	} catch (error: any) {

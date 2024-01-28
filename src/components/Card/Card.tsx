@@ -133,7 +133,7 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{offset ? 0 : Math.trunc(offset)}
+									{offset}
 								</text>
 								<text
 									x="50"
@@ -142,7 +142,7 @@ const Card: React.FC<CardProps> = ({
 									textAnchor="middle"
 									dy=".3em"
 									fill="#3498db">
-									{`/${planGB}` ? 0 : `/${planGB}GB`}
+									{`/${planGB}GB`}
 								</text>
 							</svg>
 						</div>
