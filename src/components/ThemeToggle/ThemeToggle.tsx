@@ -24,7 +24,10 @@ const ThemeToggle: React.FC = () => {
 	return (
 		<>
 			{theme === 'dark' ? (
-				<div onClick={handleChangeTheme} style={{ cursor: 'pointer' }}>
+				<div
+					onClick={handleChangeTheme}
+					style={{ cursor: 'pointer' }}
+					className="lg:my-5 md:my-2 my-2">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 30 30"
@@ -35,7 +38,10 @@ const ThemeToggle: React.FC = () => {
 					</svg>
 				</div>
 			) : (
-				<div onClick={handleChangeTheme} style={{ cursor: 'pointer' }}>
+				<div
+					onClick={handleChangeTheme}
+					style={{ cursor: 'pointer' }}
+					className="lg:my-5 md:my-2 my-2">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 100 100"
