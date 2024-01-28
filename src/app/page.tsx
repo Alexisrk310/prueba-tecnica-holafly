@@ -34,12 +34,8 @@ export default function Home() {
 				});
 				router.push('/homepage');
 			}
-			// Aquí puedes realizar acciones adicionales después de un inicio de sesión exitoso, si es necesario
 		} catch (error: any) {
-			// Manejar el error
 			console.error('Error al iniciar sesión:', error.message);
-
-			// Puedes mostrar un mensaje de error al usuario o realizar otras acciones necesarias
 		}
 	};
 

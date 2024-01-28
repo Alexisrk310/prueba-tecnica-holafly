@@ -10,7 +10,6 @@ export default function HomePage() {
 	const { profile: profil } = userStore((state: IUserStore) => state);
 
 	useEffect(() => {
-		// Convertir la cadena JSON a un objeto JavaScript
 		try {
 			let userDataString = localStorage.getItem('user');
 
@@ -42,26 +41,22 @@ export default function HomePage() {
 		const dataForStatus = groupedByStatus[tab.label] || [];
 
 		return (
-			<div
-				key={index}
-				className="flex justify-center items-center flex-wrap gap-4">
+			<div key={index} className="flex gap-4">
 				{dataForStatus.map((dataUser, dataIndex: number) => {
 					let match = dataUser.plan.match(/,\s*(\d+)/);
 					let numGB = Number(match[1]);
-					console.log(dataUser.consumption);
 					return (
-						<div key={dataIndex}>
-							<Card
-								status={dataUser.status}
-								dateStart={dataUser.dateStart}
-								dateEnd={dataUser.dateEnd}
-								flag={dataUser.flag}
-								country={dataUser.country}
-								plan={dataUser.plan}
-								consumption={dataUser.consumption}
-								planGB={numGB}
-							/>
-						</div>
+						<Card
+							key={dataUser.id}
+							status={dataUser.status}
+							dateStart={dataUser.dateStart}
+							dateEnd={dataUser.dateEnd}
+							flag={dataUser.flag}
+							country={dataUser.country}
+							plan={dataUser.plan}
+							consumption={dataUser.consumption}
+							planGB={numGB}
+						/>
 					);
 				})}
 			</div>
@@ -70,8 +65,8 @@ export default function HomePage() {
 
 	return (
 		<>
-			<div className="absolute w-60 h-60 rounded-xl bg-purple-300 dark:bg-slate-700 top-40 -left-16 z-0 transform rotate-45 hidden md:block animate-fall"></div>
-			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 dark:bg-slate-700 -bottom-6 -right-10 transform rotate-12 hidden md:block animate-fall"></div>
+			{/* <div className="absolute w-60 h-60 rounded-xl bg-purple-300 dark:bg-slate-700 top-40 -left-16 z-0 transform rotate-45 hidden md:block animate-fall"></div>
+			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 dark:bg-slate-700 -bottom-6 -right-10 transform rotate-12 hidden md:block animate-fall"></div> */}
 
 			<div className="flex w-screen justify-center">
 				<img
@@ -83,11 +78,10 @@ export default function HomePage() {
 				/>
 			</div>
 			<div className="animate-fall">
-				{/* falta poner darkmode */}
 				<Tabs tabs={tabsInfo}>{tabsContent}</Tabs>
 			</div>
-			<div className="w-40 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full top-40 right-12 hidden md:block animate-fall"></div>
-			<div className="w-20 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block animate-fall"></div>
+			{/* <div className="w-40 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full top-40 right-12 hidden md:block animate-fall"></div>
+			<div className="w-20 h-40 absolute bg-purple-300 dark:bg-slate-700 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block animate-fall"></div> */}
 		</>
 	);
 }

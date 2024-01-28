@@ -2,20 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
-} */
-
 body {
 	color: rgb(var(--foreground-rgb));
 	overflow: hidden;
@@ -28,34 +14,6 @@ body {
 		rgb(var(--background-start-rgb));
 }
 
-/* @layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
-} */
-/* LOADER */
-.loader {
-	width: 100px;
-	height: 100 px;
-	position: relative;
-	overflow: hidden;
-}
-.loader:before,
-.loader:after {
-	content: '';
-	position: absolute;
-	left: 50%;
-	bottom: 0;
-	width: 64px;
-	height: 64px;
-	border-radius: 50%;
-	background: #464444;
-	transform: translate(-50%, 100%) scale(0);
-	animation: push 2s infinite ease-in;
-}
-.loader:after {
-	animation-delay: 1s;
-}
 @keyframes push {
 	0% {
 		transform: translate(-50%, 100%) scale(1);
@@ -91,5 +49,5 @@ body {
 }
 
 .animate-fall {
-	animation: fall 0.5s ease-out; /* Puedes ajustar la duración y la función de temporización según tus preferencias */
+	animation: fall 0.5s ease-out;
 }

@@ -38,7 +38,7 @@ const loading = () => {
 					/>
 				</div>
 				<div className="opacity-50 filter grayscale blur-sm">
-					<Tabs tabs={tabsInfo}>{tabsContentArray}</Tabs>
+					{/* <Tabs tabs={tabsInfo}>{tabsContentArray}</Tabs> */}
 				</div>
 
 				<div className="w-40 h-40 absolute bg-gray-300 rounded-full top-40 right-12 hidden md:block filter grayscale blur-sm"></div>

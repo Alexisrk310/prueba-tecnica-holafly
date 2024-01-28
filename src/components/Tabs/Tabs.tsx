@@ -32,7 +32,7 @@ const TabPanel: React.FC<any> = ({ id, children }) => (
 );
 
 const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
-	const [activeTab, setActiveTab] = useState(0);
+	const [, setActiveTab] = useState(0);
 
 	useEffect(() => {
 		const tabsElements = document.querySelectorAll(
@@ -71,30 +71,27 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 			});
 		});
 
-		// Simulate a click on the first tab to make it sink initially
 		tabsElements[0].click();
 	}, []);
 
 	return (
-		<div className="flex justify-center items-center">
-			<div className="max-w-full  sm:px-0">
-				<div className="sm:w-7/12">
-					<div
-						role="tablist"
-						aria-label="tabs"
-						className="relative w-max mx-auto h-12 grid grid-cols-3 items-center  px-[7px] rounded-full bg-gray-900/20 dark:bg-slate-950 overflow-hidden shadow-2xl shadow-900/20 transition">
-						<div className="absolute indicator h-11 my-auto top-0 bottom-0 left-0 rounded-full bg-white dark:bg-slate-900 shadow-md transition"></div>
-						{tabs.map((tab, index) => (
-							<Tab key={index} label={tab.label} panelId={tab.panelId} />
-						))}
-					</div>
-					<div className="mt-6 relative rounded-3xl bg-purple-50 w-96">
-						{React.Children.map(children, (child, index) => (
-							<TabPanel key={index} id={tabs[index].panelId}>
-								{child}
-							</TabPanel>
-						))}
-					</div>
+		<div className="flex justify-center items-center mt-8">
+			<div className="max-w-full">
+				<div
+					role="tablist"
+					aria-label="tabs"
+					className="relative w-full h-[50px] grid grid-cols-3 items-center px-[7px] rounded-full bg-gray-900/20 dark:bg-slate-950 overflow-hidden shadow-2xl shadow-900/20 transition">
+					<div className="absolute indicator h-9 my-auto top-0 bottom-0 left-0 rounded-full bg-white dark:bg-slate-900 shadow-md transition"></div>
+					{tabs.map((tab, index) => (
+						<Tab key={index} label={tab.label} panelId={tab.panelId} />
+					))}
+				</div>
+				<div className="mt-4 relative rounded-3xl bg-purple-50 mx-auto">
+					{React.Children.map(children, (child, index) => (
+						<TabPanel key={index} id={tabs[index].panelId}>
+							{child}
+						</TabPanel>
+					))}
 				</div>
 			</div>
 		</div>

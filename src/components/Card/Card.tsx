@@ -40,8 +40,8 @@ const Card: React.FC<CardProps> = ({
 			: '';
 
 	return (
-		<div className="container w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-7 ">
-			<div className="container flex justify-around items-center">
+		<div className="container min-w-80 h-75  rounded-xl overflow-hidden shadow-lg bg-slate-50 dark:bg-slate-500 p-7 ">
+			<div className="container flex justify-between items-center">
 				<div className="flex">
 					<div>
 						<img
@@ -60,52 +60,20 @@ const Card: React.FC<CardProps> = ({
 						{status}
 					</p>
 				</div>
-				<div className="type">
+				<>
 					{status === 'Pending' && (
-						// DAYS
-						<svg width="120" height="160" xmlns="http://www.w3.org/2000/svg">
-							<rect
-								x="10"
-								y="10"
-								width="100"
-								height="100"
-								rx="20"
-								ry="20"
-								fill="#f0f0f0"
-								stroke="#ccc"
-								strokeWidth="2"
+						<div className="w-32  relative flex justify-center items-center">
+							<img
+								src="../../calendar.png"
+								width={100}
+								height={200}
+								className="absolute w-96 "
 							/>
-
-							<rect
-								x="10"
-								y="10"
-								width="100"
-								height="20"
-								rx="20"
-								ry="20"
-								fill="#4285F4"
-							/>
-
-							<text
-								x="60"
-								y="60"
-								fontSize="24"
-								textAnchor="middle"
-								dominantBaseline="middle"
-								fill="#333">
-								{gbDatePlan}
-							</text>
-
-							<text
-								x="60"
-								y="90"
-								fontSize="12"
-								textAnchor="middle"
-								dominantBaseline="middle"
-								fill="#555">
-								{daysDatePlan}
-							</text>
-						</svg>
+							<div>
+								<p className="mt-10">{gbDatePlan}</p>
+								<p className="">{daysDatePlan}</p>
+							</div>
+						</div>
 					)}
 					{status === 'Active' && (
 						<div>
@@ -149,7 +117,7 @@ const Card: React.FC<CardProps> = ({
 							</svg>
 						</div>
 					)}
-				</div>
+				</>
 			</div>
 
 			<p>{`${dateStart}${dateEnd ? ` - ${dateEnd}` : ''}`}</p>
