@@ -1,7 +1,7 @@
 import { userAuth } from '@/interfaces/userInterface';
 
 export const loginAuth = async (credentials: userAuth) => {
-	const loginEndpoint = 'http://localhost:3001/api/login';
+	const loginEndpoint = 'https://holaflybackend.onrender.com/api/login';
 	try {
 		const response = await fetch(loginEndpoint, {
 			method: 'POST',

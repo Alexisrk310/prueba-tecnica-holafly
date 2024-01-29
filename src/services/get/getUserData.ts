@@ -16,7 +16,7 @@ export const getUserData = async (id: string, set: Iset['set']) => {
 		state: { auth },
 	} = JSON.parse(userDataString as any);
 
-	const userDataEndpoint = `http://localhost:3001/api/users/${id}/data`;
+	const userDataEndpoint = `https://holaflybackend.onrender.com/api/users/${id}/data`;
 	try {
 		const response = await fetch(userDataEndpoint, {
 			headers: {
