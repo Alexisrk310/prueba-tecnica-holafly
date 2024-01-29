@@ -39,16 +39,16 @@ export default function Home() {
 
 	return (
 		<div className="min-h-screen bg-purple-400 flex justify-center items-center">
-			<div className="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden md:block"></div>
-			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 -bottom-6 -right-10 transform rotate-12 hidden md:block"></div>
+			<div className="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden sm:block"></div>
+			<div className="absolute w-48 h-48 rounded-xl bg-purple-300 -bottom-6 -right-10 transform rotate-12 hidden sm:block"></div>
 			<form
 				onSubmit={handleSubmit}
-				className="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
+				className="py-8 px-4 bg-white rounded-2xl shadow-xl z-20 w-full sm:w-96">
 				<div>
-					<h1 className="text-3xl font-bold text-center mb-4 cursor-pointer">
+					<h1 className="text-2xl font-bold text-center mb-4 cursor-pointer">
 						Welcome
 					</h1>
-					<p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">
+					<p className="w-full text-center text-sm mb-6 font-semibold text-gray-700 tracking-wide cursor-pointer">
 						Sign in to access all our services at no cost!
 					</p>
 				</div>
@@ -72,14 +72,14 @@ export default function Home() {
 						onChange={handleChange}
 					/>
 				</div>
-				<div className="text-center mt-6">
-					<button className="w-full py-2 text-xl text-white bg-purple-400 rounded-lg hover:bg-purple-500 transition-all">
+				<div className="text-center mt-4">
+					<button className="w-full py-2 text-lg text-white bg-purple-400 rounded-lg hover:bg-purple-500 transition-all">
 						Login
 					</button>
 				</div>
 			</form>
-			<div className="w-40 h-40 absolute bg-purple-300 rounded-full top-0 right-12 hidden md:block"></div>
-			<div className="w-20 h-40 absolute bg-purple-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block"></div>
+			<div className="w-24 h-24 absolute bg-purple-300 rounded-full top-0 right-4 hidden sm:block"></div>
+			<div className="w-12 h-24 absolute bg-purple-300 rounded-full bottom-8 left-4 transform rotate-45 hidden sm:block"></div>
 		</div>
 	);
 }
