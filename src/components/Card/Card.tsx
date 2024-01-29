@@ -1,6 +1,5 @@
 'use client';
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import { CardProps } from '../../interfaces/cardProps';
 
 const Card: React.FC<CardProps> = ({
@@ -124,7 +123,7 @@ const Card: React.FC<CardProps> = ({
 			<p className="text-gray-700 text-base mt-4">{plan}</p>
 			<div className="px-6 py-4"></div>
 			<div className="flex justify-center flex-col gap-3">
-				{status === 'Active' ? (
+				{status === 'Active' && (
 					<>
 						<button className="bg-slate-200 dark:bg-slate-400 hover:bg-slate-300  text-black font-bold py-2 px-4 rounded-md">
 							View Details
@@ -133,13 +132,12 @@ const Card: React.FC<CardProps> = ({
 							Add more data
 						</button>
 					</>
-				) : status === 'Pending' ? (
+				)}
+				{status === 'Pending' && (
 					<button className="bg-red-500 dark:bg-red-800 hover:bg-red-600  text-white font-bold py-2 px-4 rounded-md">
 						View Details and Install
 					</button>
-				) : status === 'Expired' ? (
-					<></>
-				) : undefined}
+				)}
 			</div>
 		</div>
 	);

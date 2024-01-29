@@ -1,16 +1,6 @@
 'use client';
+import { TabProps, TabsProps } from '@/interfaces/tabs.interface';
 import { useEffect, useState } from 'react';
-
-interface TabProps {
-	label: string;
-	panelId: string;
-	status: string;
-	onChangeTab: (status: string) => void;
-}
-
-interface TabsProps {
-	tabs: TabProps[];
-}
 
 const Tab: React.FC<TabProps> = ({ label, panelId, status, onChangeTab }) => (
 	<button
